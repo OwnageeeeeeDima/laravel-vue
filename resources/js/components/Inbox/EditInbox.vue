@@ -1,5 +1,6 @@
 <template>
     <div>
+        <preload-page></preload-page>
         <div class="inbox">
             <div class="go__back">
                 <i @click="goBack" class="far fa-arrow-alt-circle-left"></i>
@@ -32,8 +33,14 @@
 </template>
 
 <script>
+import PreloadPage from '../PreloadPage'
+
 export default {
+    component: {
+        PreloadPage
+    },
     data() {
+
         return {
             product_id: this.$route.params.id,
             product: [],
@@ -50,7 +57,7 @@ export default {
             this.$router.go(-1)
         },
         updateProduct() {
-            axios.put('/api/products/3101', {
+            axios.put('/api/products/'+ this.product_id, {
                 config: this.config,
                 description: this.product.description,
                 product_link: this.product.product_link,
@@ -63,6 +70,7 @@ export default {
                 },
             })
             .then(response => {
+
                 window.location.href = '/lk/inbox'
             })
             .catch(error => {
@@ -106,6 +114,10 @@ export default {
 
         }
     }
+}
+.page__title {
+    font-size: 25px;
+    color: $main-color;
 }
 
 .form {
@@ -163,6 +175,9 @@ export default {
         display: flex;
         justify-content: space-between;
 
+        label {
+            display: block;
+        }
         input {
             width: 43%;
         }

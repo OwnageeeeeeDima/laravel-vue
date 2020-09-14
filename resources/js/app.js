@@ -15,12 +15,13 @@ Vue.use(VueRouter)
 
 let routes = [
     {path: '/lk/inbox', component: require('./components/Inbox/InboxComponent.vue').default},
-    {path: '/lk/parcels', component: require('./components/Inbox/TestComponent.vue').default},
-    {path: '/lk/costs', component: require('./components/Inbox/TestComponent.vue').default},
-    {path: '/lk/faq', component: require('./components/Inbox/TestComponent.vue').default},
+    {path: '/lk/parcels', component: require('./components/Inbox/Parcels.vue').default},
     {path: '/lk/inbox/create', component: require('./components/Inbox/CreateInbox.vue').default},
     {path: '/lk/inbox/edit/:id', component: require('./components/Inbox/EditInbox.vue').default},
-    {path: '/lk/profile/balance', component: require('./components/Profile/Balance.vue').default},
+    {path: '/lk/profile', component: require('./components/Profile/Profile').default},
+    {path: '/lk/profile/username', component: require('./components/Profile/Username').default},
+
+
 ]
 
 const router = new VueRouter({
@@ -41,6 +42,7 @@ const router = new VueRouter({
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('preload-page', require('./components/PreloadPage.vue').default);
 
 
 /**

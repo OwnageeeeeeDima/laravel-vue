@@ -12,6 +12,8 @@
 </head>
 <body>
 <div id="app">
+
+{{--  Preloader fore page load   <balance></balance>--}}
     <header class="header">
         <div class="wrapper">
             <div class="header__inner">
@@ -23,7 +25,7 @@
 
                 <!-- burger left menu end -->
                 <div class="cash">
-                    {{ \Illuminate\Support\Facades\Auth::user()->balance }}
+                    {{ \Illuminate\Support\Facades\Auth::user()->balance ? \Illuminate\Support\Facades\Auth::user()->balance : '0,00'}}
                     <i class="fas fa-ruble-sign"></i>
                 </div>
                 <div class="profile" id="profile">
@@ -39,10 +41,10 @@
                         </div>
                         <div class="dropdown__menu-body">
                             <ul>
-                                <router-link tag="li" to="/lk/profile/balance"><i class="far fa-user"></i>Профиль</router-link>
-                                <li><a href="#"><i class="fas fa-cog"></i> Настройки</a></li>
-                                <li><a href="#"> <i class="fas fa-users"></i> Получатели</a></li>
-                                <li><a href="#"><i class="fas fa-map-marker-alt"></i>Адреса доставки</a></li>
+                               <li> <router-link tag="a" to="/lk/profile/"><i class="far fa-user"></i>Профиль</router-link> </li>
+                               <li> <router-link tag="a" to="/li/profile/"><i class="fas fa-cog"></i> Настройки</router-link> </li>
+                               <li> <router-link tag="a" to="/li/profile/"> <i class="fas fa-users"></i> Получатели</router-link> </li>
+                               <li> <router-link tag="a" to="/li/profile/"><i class="fas fa-map-marker-alt"></i>Адреса доставки</router-link> </li>
                             </ul>
 
                         </div>
@@ -84,6 +86,8 @@
         @yield('content')
         <router-view></router-view>
     </div>
+
+
 </div>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>

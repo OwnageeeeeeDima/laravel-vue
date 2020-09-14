@@ -46,7 +46,7 @@
 
 .left__sidebar {
   position: fixed;
-  z-index: 2;
+  z-index: 100000;
   top: 0;
   left: 0;
   right: 0;
@@ -135,6 +135,7 @@
 .dropdown__menu-body ul li {
   margin-bottom: 21px;
   padding: 5px;
+  cursor: pointer;
 }
 
 .dropdown__menu-body ul li i {

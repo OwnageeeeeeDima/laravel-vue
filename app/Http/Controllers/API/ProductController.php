@@ -55,6 +55,8 @@ class ProductController extends Controller
         $product->count = $request->count;
         $product->price = $request->price;
         $product->update();
+
+        return 123;
     }
 
 

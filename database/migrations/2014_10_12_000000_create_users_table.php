@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('cabinet_number')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->float('balance')->default(0);
+            $table->integer('balance')->nullable();
             $table->rememberToken();
             $table->timestamps();
 

@@ -1,51 +1,59 @@
 <template>
-    <div class="inbox">
-        <div class="page__title">
-            <h1>Покупки</h1>
-            <div class="add__product">
-                <i class="fas fa-plus-circle"></i>
-                <router-link to="/lk/inbox/create" class="add__product-link">Добавить товар</router-link>
+    <div>
+        <preload-page></preload-page>
+        <div class="inbox">
+
+            <div class="page__title">
+                <h1>Покупки</h1>
+                <div class="add__product" v-if="products.length > 0">
+                    <i class="fas fa-plus-circle"></i>
+                    <router-link to="/lk/inbox/create" class="add__product-link">Добавить товар</router-link>
+                </div>
+
+            </div>
+            <div class="inbox__empty" v-if="products.length < 1">
+                <div class="inbox__empty-text">
+                    <p> Здесь появятся покупки, которые вы заказали на один из ваших адресов.</p>
+                </div>
+                <div class="inbox__empty-advice">
+                    Совет: Добавляйте покупки сразу после оформления заказа. Если собрать посылку заранее, она быстрее
+                    доберется до вас.
+                </div>
+                <router-link to="/lk/inbox/create" class="add-index">Добавить товар</router-link>
+
+                <router-view></router-view>
+            </div>
+
+            <div class="products" v-else="products.length > 0">
+                <!--            <div v-for="product in products" :key="product.id" class="product__item">-->
+                <router-link v-for="product in products" :key="product.id" :to="`/lk/inbox/edit/${product.product_id}`"
+                             class="product__item">
+                    <div class="product__item-short">
+                        {{ product.product_number }}
+                    </div>
+                    <div class="product__item-more">
+                        <i class="far fa-clock"></i>
+                    </div>
+                    <div class="product__item-ellipsis">
+                        <i @click.prevent="deleteProduct(product.product_id)" class="fas fa-ellipsis-h"></i>
+                    </div>
+                </router-link>
             </div>
 
         </div>
-        <div class="inbox__empty" v-if="products.length < 1">
-            <div class="inbox__empty-text">
-                <p> Здесь появятся покупки, которые вы заказали на один из ваших адресов.</p>
-            </div>
-            <div class="inbox__empty-advice">
-                Совет: Добавляйте покупки сразу после оформления заказа. Если собрать посылку заранее, она быстрее
-                доберется до вас.
-            </div>
-            <router-link to="/lk/inbox/create" class="add-index">Добавить товар</router-link>
-
-            <router-view></router-view>
-        </div>
-
-        <div class="products" v-else="products.length > 0">
-            <!--            <div v-for="product in products" :key="product.id" class="product__item">-->
-            <router-link v-for="product in products" :key="product.id" :to="`/lk/inbox/edit/${product.product_id}`"
-                         class="product__item">
-                <div class="product__item-short">
-                    {{ product.product_number }}
-                </div>
-                <div class="product__item-more">
-                    <i class="far fa-clock"></i>
-                </div>
-                <div class="product__item-ellipsis">
-                    <i @click.prevent="deleteProduct(product.product_id)" class="fas fa-ellipsis-h"></i>
-                </div>
-            </router-link>
-        </div>
-
     </div>
-
 
     <!--    </div>-->
 
 </template>
 
 <script>
+import PreloadPage from '../PreloadPage'
+
 export default {
+    component: {
+        PreloadPage
+    },
     data() {
         return {
             config: {
@@ -99,6 +107,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../sass/variables';
+
 
 
 .page__title {
@@ -186,7 +195,7 @@ export default {
     color: #000;
     text-decoration: none;
     width: 250px;
-    background-color: #f7f6f3;
+    background-color: #38c172;
     height: 250px;
     border-radius: 1.4rem;
     transition: background .2s;
@@ -196,7 +205,7 @@ export default {
 
 
     &:hover {
-        background: #eeece7;
+        background: #2a9055;
     }
 
     &-short {
@@ -211,6 +220,7 @@ export default {
 
         i {
             font-size: 60px;
+            color: #fff;
         }
 
     }
@@ -222,7 +232,7 @@ export default {
         transition: color .2s;
 
         &:hover {
-            color: #00CC66;
+            color: #fff;
         }
     }
 }

@@ -6,8 +6,6 @@ let profile = document.getElementById('profile')
 
 
 
-
-
 $(function () {
     $("#burger").on("click", function () {
         $("#sidebar").addClass("open");
